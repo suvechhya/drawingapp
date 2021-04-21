@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Artify</title>
+    <link type="text/css" rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="header-section">
+        <h1 class="page-heading">Artify</h1>
+        <section class="toolbox">
+            <div class="tool">
+                <button id="pencil-canvas">
+                </button>
+            </div>
+            <div class="tool">
+                <button id="erase-canvas">
+                </button>
+            </div>
+            <div class="tool">
+                <label>Color:</label> <input type="color" id="border-color">
+            </div>
+            <div class="tool">
+                <label>Border Size:</label>
+                <input type="range" id="border-radius" min="1" max="50" step="1" value="1">
+                <div id="border-display"></div>
+            </div>
+            <div class="tool">
+                <button id="clear-canvas"></button>
+            </div>
+            <div class="tool">
+                <button id="save-image"></button>
+            </div>   
+        </section>
+    </div>
+    <canvas id="draw-canvas" height="600" width="600"></canvas>
+    <script src="main.js"></script>
+</body>
+
+</html>

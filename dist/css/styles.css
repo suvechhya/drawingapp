@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap');
+
+.page-heading{
+    font-family: 'Original Surfer', cursive;
+    text-align: center;
+    font-size: 4rem;
+}
+#draw-canvas{
+    cursor:crosshair;
+    border:1px solid black;
+    position: fixed;
+}
+
+.toolbox{
+    display: flex;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+    justify-content: center;
+}
+
+.tool{
+    display: flex;
+    padding: 10px;
+    align-items: center;
+}
+
+.tool label{
+    padding: 10px 5px;
+}
+
+#border-display{
+    height: 1px;
+    width: 1px;
+    background-color: #000000;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+#pencil-canvas{
+    background-color: white;
+    background-image: url('../images/pencil.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 50px;
+            height: 50px;
+            font-size: 2rem;
+}
+
+
+#erase-canvas{
+    background-color: white;
+    background-image: url('../images/eraser.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 50px;
+            height: 50px;
+            font-size: 2rem;
+}
+.on{
+    background-color: #bfbfbf!important;
+}
+
+#save-image{
+    background-color: white;
+    background-image: url('../images/save.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 50px;
+            height: 50px;
+            font-size: 2rem;
+}
+
+#clear-canvas{
+    background-color: white;
+    background-image: url('../images/trash.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 50px;
+            height: 50px;
+            font-size: 2rem;
+}
