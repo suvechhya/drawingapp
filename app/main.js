@@ -83,8 +83,10 @@ function init() {
     canvas.addEventListener('mouseenter', (e) => getCoordinates(e.clientX, e.clientY, e.target.getBoundingClientRect()));
     canvas.addEventListener('mousedown', (e) => getCoordinates(e.clientX, e.clientY, e.target.getBoundingClientRect()));
     canvas.addEventListener('mousemove', (e) => draw(e));
-    canvas.addEventListener('touchstart', (e) => getCoordinates(e.clientX, e.clientY, e.target.getBoundingClientRect()));
-    canvas.addEventListener('touchmove', (e) => draw(e));
+
+    document.body.addEventListener("touchstart", function(e){ if (e.target.nodeName == 'CANVAS') { e.preventDefault();getCoordinates(e.clientX, e.clientY, e.target.getBoundingClientRect()) } }, false);
+    document.body.addEventListener("touchend", function(e){ if (e.target.nodeName == 'CANVAS') { e.preventDefault(); } }, false);
+    document.body.addEventListener("touchmove", function(e){ if (e.target.nodeName == 'CANVAS') { e.preventDefault();draw(e) } }, false);
 
     document.getElementById('border-radius').addEventListener('change', (e) => updateBorder(e.target.value));
     document.getElementById('border-color').addEventListener('change', (e) => updateColor(e.target.value));
