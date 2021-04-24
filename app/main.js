@@ -10,9 +10,9 @@ function getCoordinates(sX, sY, rect) {
     y = sY - rect.top;
 }
 
-function draw(e) {
+function draw(clientX, clientY, e) {
     // mouse left button must be pressed
-    if (e.buttons !== 1) return;
+    if (!(e.type === 'mousemove' && e.buttons === 1) && e.type !== 'touchmove') return;
 
     ctx.beginPath();
 
@@ -21,7 +21,7 @@ function draw(e) {
     ctx.strokeStyle = isEraser ? '#fff' : color;
 
     ctx.moveTo(x, y);
-    getCoordinates(e.clientX, e.clientY, e.target.getBoundingClientRect());
+    getCoordinates(clientX, clientY, e.target.getBoundingClientRect());
     ctx.lineTo(x, y);
     ctx.stroke();
 }
@@ -45,7 +45,7 @@ function resize() {
 }
 
 function clearCanvas() {
-    ctx.clearRect(0, 0, 0.8 * window.innerWidth, 0.6 * window.innerHeight);
+    ctx.clearRect(0, 0, window.innerWidth, 0.6 * window.innerHeight);
 }
 
 function saveImage() {
@@ -82,11 +82,10 @@ function init() {
     resize();
     canvas.addEventListener('mouseenter', (e) => getCoordinates(e.clientX, e.clientY, e.target.getBoundingClientRect()));
     canvas.addEventListener('mousedown', (e) => getCoordinates(e.clientX, e.clientY, e.target.getBoundingClientRect()));
-    canvas.addEventListener('mousemove', (e) => draw(e));
+    canvas.addEventListener('mousemove', (e) => draw(e.clientX, e.clientY, e));
 
-    document.body.addEventListener("touchstart", function(e){ if (e.target.nodeName == 'CANVAS') { e.preventDefault();getCoordinates(e.clientX, e.clientY, e.target.getBoundingClientRect()) } }, false);
-    document.body.addEventListener("touchend", function(e){ if (e.target.nodeName == 'CANVAS') { e.preventDefault(); } }, false);
-    document.body.addEventListener("touchmove", function(e){ if (e.target.nodeName == 'CANVAS') { e.preventDefault();draw(e) } }, false);
+    document.body.addEventListener("touchstart", function(e){ if (e.target.nodeName == 'CANVAS') { getCoordinates(e.touches[0].clientX, e.touches[0].clientY, e.target.getBoundingClientRect()) } }, false);
+    document.body.addEventListener("touchmove", function(e){ if (e.target.nodeName == 'CANVAS') { draw(e.touches[0].clientX, e.touches[0].clientY, e) } }, false);
 
     document.getElementById('border-radius').addEventListener('change', (e) => updateBorder(e.target.value));
     document.getElementById('border-color').addEventListener('change', (e) => updateColor(e.target.value));
