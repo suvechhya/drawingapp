@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap');
 
+body{
+    overflow-y: hidden;
+}
 .page-heading{
     font-family: 'Original Surfer', cursive;
     text-align: center;
