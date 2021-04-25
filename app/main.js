@@ -49,10 +49,10 @@ function clearCanvas() {
 }
 
 function saveImage() {
-    const dataURL = canvas.toDataURL("image/png", 1.0);
+    const dataURL = canvas.toDataURL("image/jpeg", 1.0);
     const a = document.createElement('a');
     a.href = dataURL;
-    a.download = 'img.png';
+    a.download = 'img.jpg';
     document.body.appendChild(a);
     a.click();
 }
@@ -80,6 +80,8 @@ function init() {
     canvas = document.getElementById('draw-canvas');
     ctx = canvas.getContext('2d');
     resize();
+    ctx.fillStyle = "rgb(255,255,255)";
+    ctx.fillRect(0, 0, window.innerWidth, 0.6 * window.innerHeight);
     canvas.addEventListener('mouseenter', (e) => getCoordinates(e.clientX, e.clientY, e.target.getBoundingClientRect()));
     canvas.addEventListener('mousedown', (e) => getCoordinates(e.clientX, e.clientY, e.target.getBoundingClientRect()));
     canvas.addEventListener('mousemove', (e) => draw(e.clientX, e.clientY, e));
